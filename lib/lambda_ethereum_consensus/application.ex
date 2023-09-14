@@ -7,16 +7,16 @@ defmodule LambdaEthereumConsensus.Application do
 
   @impl true
   def start(_type, _args) do
-    {:ok, host} = Libp2p.host_new()
-    {:ok, gsub} = Libp2p.new_gossip_sub(host)
+    # {:ok, host} = Libp2p.host_new()
+    # {:ok, gsub} = Libp2p.new_gossip_sub(host)
 
     children = [
-      {LambdaEthereumConsensus.P2P.IncomingRequestHandler, [host]},
-      {LambdaEthereumConsensus.P2P.PeerConsumer, [host]},
-      {LambdaEthereumConsensus.P2P.GossipSub, [gsub]},
-      {LambdaEthereumConsensus.Libp2pPort, []},
+      # {LambdaEthereumConsensus.P2P.IncomingRequestHandler, [host]},
+      # {LambdaEthereumConsensus.P2P.PeerConsumer, [host]},
+      # {LambdaEthereumConsensus.P2P.GossipSub, [gsub]},
+      {LambdaEthereumConsensus.Libp2pPort, []}
       # Start the Endpoint (http/https)
-      BeaconApi.Endpoint
+      # BeaconApi.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

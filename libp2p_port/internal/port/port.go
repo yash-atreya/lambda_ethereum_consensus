@@ -2,10 +2,12 @@ package port
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/binary"
 	"io"
 	libp2p "libp2p_port/internal/proto"
 	"libp2p_port/internal/utils"
+	"math"
 	"os"
 
 	"google.golang.org/protobuf/proto"
@@ -45,5 +47,11 @@ func SendNotification(notification *libp2p.Notification) {
 	data, err := proto.Marshal(notification)
 	utils.PanicIfError(err)
 
-	os.Stdout.Write(data)
+	if len(data) > math.MaxUint32 {
+		panic("notification too long")
+	}
+	var buf bytes.Buffer
+	binary.Write(&buf, binary.BigEndian, uint32(len(data)))
+	buf.Write(data)
+	os.Stdout.Write(buf.Bytes())
 }

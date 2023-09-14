@@ -104,6 +104,8 @@ fmt:
 
 # Generate protobof code
 proto:
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	asdf reshim golang
 	protoc --go_out=./libp2p_port proto/libp2p.proto
 	protoc --elixir_out=./lib proto/libp2p.proto
 
