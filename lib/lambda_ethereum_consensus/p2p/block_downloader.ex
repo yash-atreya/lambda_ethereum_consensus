@@ -2,8 +2,8 @@ defmodule LambdaEthereumConsensus.P2P.BlockDownloader do
   @moduledoc """
   This module requests blocks from peers.
   """
-  alias LambdaEthereumConsensus.Store.BlockStore
   alias LambdaEthereumConsensus.P2P
+  alias LambdaEthereumConsensus.Store.BlockStore
   use GenStage
 
   @protocol_id "/eth2/beacon_chain/req/beacon_blocks_by_range/2/ssz_snappy"
